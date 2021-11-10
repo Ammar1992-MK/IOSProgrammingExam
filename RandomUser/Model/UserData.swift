@@ -9,10 +9,10 @@ import Foundation
 
 struct UserData : Decodable {
     
-    let results : [User]
+    let results : [UserApi]
 }
 
-struct User  : Decodable{
+struct UserApi  : Decodable{
     
     let name : Name
     let email : String

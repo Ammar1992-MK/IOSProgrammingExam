@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class UsersTableViewController: UITableViewController {
 
     
@@ -17,20 +17,33 @@ class UsersTableViewController: UITableViewController {
     var userImage : UIImage?
     var imageToPass = UIImage()
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        userManager.delegate = self
-        
-        
         
         userManager.fetchUserData()
+        
+        loadUsers()
         
     }
     
     
+    func loadUsers(){
+        
+        let request : NSFetchRequest<User> = User.fetchRequest()
+        
+        do{
+            users = try context.fetch(request)
+            tableView.reloadData()
+        }catch{
+            print("error fetching data from DB \(error)")
+        }
+        
+        
+    }
     
 
     
@@ -46,10 +59,10 @@ class UsersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! UserCell
 
-        cell.label.text = "\(users[indexPath.row].name.first) \(users[indexPath.row].name.last)"
+        cell.label.text = "\(users[indexPath.row].firstName ?? "No first Name were found") \(users[indexPath.row].lastName ?? "no last name were found")"
         
         DispatchQueue.main.async { [self] in
-            let url = URL(string: self.users[indexPath.row].picture.medium)
+            let url = URL(string: self.users[indexPath.row].imageMedium!)
                if let data = try? Data(contentsOf: url!)
                {
                 userImage = UIImage(data: data)
@@ -77,20 +90,6 @@ class UsersTableViewController: UITableViewController {
 
 
 
-extension UsersTableViewController : UserManagerDelegate {
-    func didUpdateUser(_ userManager: UserManager, user: [User]) {
-        users = user
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func didFailWithError(error: Error) {
-        
-        print(error)
-    }
-}
 
 
 

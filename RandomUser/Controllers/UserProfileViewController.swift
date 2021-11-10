@@ -30,9 +30,8 @@ class UserProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         DispatchQueue.main.async {  
-            let url = URL(string: (self.user?.picture.large)!)
+            let url = URL(string: (self.user?.imageLarge)!)
             if let data = try? Data(contentsOf: url!)
             {
                 self.profileImage?.image = UIImage(data: data)!
@@ -40,12 +39,13 @@ class UserProfileViewController: UIViewController {
             }
         }
         
-        nameLabel.text = ("\(user?.name.first ?? "default value") \(user?.name.last ?? "no last name") ")
+        nameLabel.text = ("\(user?.firstName ?? "default value") \(user?.lastName ?? "no last name") ")
         emailLabel.text = user?.email
+        // TODO
        // ageLabel.text = String(user?.dob.age)
-        dateOfBirthLabel.text = user?.dob.date
-        cityLabel.text = user?.location.city
-        stateLabel.text = user?.location.state
+       // dateOfBirthLabel.text = user.dateOfBirth
+        cityLabel.text = user.city
+        stateLabel.text = user.state
         
         
         

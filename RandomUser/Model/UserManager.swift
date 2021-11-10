@@ -6,10 +6,11 @@
 //
 
 import Foundation
-
+import UIKit
+import CoreData
 
 protocol UserManagerDelegate {
-    func didUpdateUser( _ userManager : UserManager ,user: [User])
+   
     func didFailWithError (error : Error)
 }
 
@@ -19,6 +20,8 @@ struct UserManager{
     let randomUserURL = "https://randomuser.me/api/?results=100&seed=ios"
     
     var delegate : UserManagerDelegate?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func fetchUserData (){
         
@@ -37,18 +40,18 @@ struct UserManager{
                     self.delegate?.didFailWithError(error: error!)
                     return
                 }
+                
                 if let safeData = data {
-                    if let user =  self.parseJSON(safeData){
-                        self.delegate?.didUpdateUser(self, user : user)
-                    }
+                    self.parseJSON(safeData)
                 }
+               
             }
             //start task
             task.resume()
         }
     }
     
-    func parseJSON( _ userData : Data) -> [User]? {
+    func parseJSON( _ userData : Data) {
      
         let decoder = JSONDecoder()
         
@@ -56,13 +59,39 @@ struct UserManager{
             let decodedData = try decoder.decode(UserData.self, from : userData )
             
             let fetchedUsers = decodedData.results
+            let newUser = User(context: context)
+            for user in fetchedUsers{
+                
+                newUser.firstName = user.name.first
+                newUser.lastName = user.name.last
+                newUser.email = user.email
+                newUser.city = user.location.city
+                newUser.state = user.location.state
+                //newUser.dateOfBirth = try Date(from: user.dob.date as! Decoder)
+                newUser.age = Int16(user.dob.age)
+                newUser.imageLarge = user.picture.large
+                newUser.imageMedium = user.picture.medium
+                newUser.latitude = user.location.coordinates.latitude
+                newUser.longitude = user.location.coordinates.longitude
+                
+                
+            }
             
-           return fetchedUsers
+            saveUserToDB()
             
         } catch{
             delegate?.didFailWithError(error: error)
             print(error)
-            return nil
+            
+        }
+    }
+    
+    func saveUserToDB()  {
+        
+        do{
+            try context.save()
+        }catch{
+            print("Error saving \(error)")
         }
     }
 }
