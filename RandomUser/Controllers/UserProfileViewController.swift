@@ -37,21 +37,26 @@ class UserProfileViewController: UIViewController {
                 self.profileImage?.image = UIImage(data: data)!
                 
             }
+            
+            
         }
         
         nameLabel.text = ("\(user?.firstName ?? "default value") \(user?.lastName ?? "no last name") ")
         emailLabel.text = user?.email
         // TODO
-       // ageLabel.text = String(user?.dob.age)
-       // dateOfBirthLabel.text = user.dateOfBirth
+        ageLabel.text = String(user.age)
+    
+        dateOfBirthLabel.text = user.dateOfBirth
         cityLabel.text = user.city
         stateLabel.text = user.state
         
         
-        
-        
-        }
+    }
     
+    
+    
+    @IBAction func deleteUserPressed(_ sender: UIButton) {
+    }
     
     
 
@@ -61,6 +66,14 @@ class UserProfileViewController: UIViewController {
             
         }
     
+    
+    @IBAction func showOnUpdatePressed(_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "fromProfileToUpdate", sender: self)
+    }
+    
+    
+    
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
             if segue.identifier == "fromProfileToMap"{
@@ -69,6 +82,13 @@ class UserProfileViewController: UIViewController {
                 destinationVC.showOneUser = true
                 destinationVC.users.append(user)
                 
+            } else if segue.identifier == "fromProfileToUpdate"{
+                
+                let destiniationVC = segue.destination as! UpdateUserViewController
+                destiniationVC.firstName = user.firstName!
+                destiniationVC.lastName = user.lastName!
+                destiniationVC.email = user.email!
+                destiniationVC.dob = user.dateOfBirth!
             }
         }
     

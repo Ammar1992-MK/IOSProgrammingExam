@@ -19,17 +19,24 @@ class UsersTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var refreshControll = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        
         userManager.fetchUserData()
-        
-        loadUsers()
-        
+        tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+       loadUsers()
+        refreshControll.addTarget(self, action: #selector(self.updateTable(refrechController:)), for: UIControl.Event.valueChanged)
+        tableView.addSubview(refreshControll)
     }
     
+    @objc func updateTable(refrechController : UIRefreshControl){
+        DispatchQueue.main.async {
+            self.loadUsers()
+            self.refreshControll.endRefreshing()
+        }
+    }
+  
     
     func loadUsers(){
         
@@ -44,7 +51,6 @@ class UsersTableViewController: UITableViewController {
         
         
     }
-    
 
     
 
@@ -85,6 +91,8 @@ class UsersTableViewController: UITableViewController {
         
         
     }
+    
+    
     
 }
 

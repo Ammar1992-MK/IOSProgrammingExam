@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var userManager = UserManager()
+    
     var users : [User] = []
     var annotations : [MKAnnotation] = []
     
@@ -24,9 +24,10 @@ class MapViewController: UIViewController {
    
        mapView.delegate = self
         
-        loadUsers()
+        
        
         if !showOneUser{
+            loadUsers()
             showUsersOnMap()
         }else {
             showSelectedUserOnMap()

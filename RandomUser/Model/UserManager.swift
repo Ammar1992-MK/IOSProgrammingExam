@@ -59,25 +59,26 @@ struct UserManager{
             let decodedData = try decoder.decode(UserData.self, from : userData )
             
             let fetchedUsers = decodedData.results
-            let newUser = User(context: context)
-            for user in fetchedUsers{
-                
-                newUser.firstName = user.name.first
-                newUser.lastName = user.name.last
-                newUser.email = user.email
-                newUser.city = user.location.city
-                newUser.state = user.location.state
-                //newUser.dateOfBirth = try Date(from: user.dob.date as! Decoder)
-                newUser.age = Int16(user.dob.age)
-                newUser.imageLarge = user.picture.large
-                newUser.imageMedium = user.picture.medium
-                newUser.latitude = user.location.coordinates.latitude
-                newUser.longitude = user.location.coordinates.longitude
-                
-                
-            }
             
-            saveUserToDB()
+            
+//            for user in fetchedUsers{
+//                let newUser = User(context: context)
+//                newUser.firstName = user.name.first
+//                newUser.lastName = user.name.last
+//                newUser.email = user.email
+//                newUser.city = user.location.city
+//                newUser.state = user.location.state
+//                newUser.dateOfBirth = user.dob.date
+//                newUser.age = Int16(user.dob.age)
+//                newUser.imageLarge = user.picture.large
+//                newUser.imageMedium = user.picture.medium
+//                newUser.latitude = user.location.coordinates.latitude
+//                newUser.longitude = user.location.coordinates.longitude
+//
+//
+//            }
+                //saveUserToDB()
+            
             
         } catch{
             delegate?.didFailWithError(error: error)
@@ -94,4 +95,22 @@ struct UserManager{
             print("Error saving \(error)")
         }
     }
+    
+    
+    func loadUsers() -> Int{
+        
+        let request : NSFetchRequest<User> = User.fetchRequest()
+        
+        do{
+            let users = try context.fetch(request)
+            print(users.count)
+            return users.count
+        }catch{
+            print("error fetching data from DB \(error)")
+        }
+        
+        return 0
+        
+    }
+
 }
