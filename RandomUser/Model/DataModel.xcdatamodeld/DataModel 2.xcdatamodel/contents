@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Seed" representedClassName="Seed" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="ios"/>
+    </entity>
     <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="class">
         <attribute name="age" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="city" attributeType="String"/>
@@ -8,12 +11,14 @@
         <attribute name="firstName" attributeType="String"/>
         <attribute name="imageLarge" attributeType="String"/>
         <attribute name="imageMedium" attributeType="String"/>
+        <attribute name="isChanged" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastName" attributeType="String"/>
         <attribute name="latitude" attributeType="String"/>
         <attribute name="longitude" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
     </entity>
     <elements>
-        <element name="User" positionX="-1311.01708984375" positionY="466.8857727050781" width="128" height="208"/>
+        <element name="User" positionX="-54" positionY="-90" width="128" height="223"/>
+        <element name="Seed" positionX="-423.000732421875" positionY="31.5306396484375" width="128" height="58"/>
     </elements>
 </model>

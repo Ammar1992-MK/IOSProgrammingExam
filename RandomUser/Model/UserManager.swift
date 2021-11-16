@@ -17,18 +17,33 @@ protocol UserManagerDelegate {
 
 struct UserManager{
     
-    let randomUserURL = "https://randomuser.me/api/?results=100&seed=ios"
+    let randomUserURL = "https://randomuser.me/api/?results=100"
     
     var delegate : UserManagerDelegate?
+    
+    var seedManager = SeedManager()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func fetchUserData (){
+      
+        let request : NSFetchRequest<Seed> = Seed.fetchRequest()
         
-        let urlString = randomUserURL
-        
-        performRequest(with: urlString)
+        do{
+            let newSeed = try context.fetch(request)
+             let seed = newSeed.first?.name
+           
+            let urlString = "\(randomUserURL)&seed=\(seed!)"
+                performRequest(with: urlString)
+            print(urlString)
+            
+            
+        }catch{
+            print(error)
+        }
+
     }
+    
     
     
     func performRequest(with urlString : String){
@@ -61,23 +76,28 @@ struct UserManager{
             let fetchedUsers = decodedData.results
             
             
-//            for user in fetchedUsers{
-//                let newUser = User(context: context)
-//                newUser.firstName = user.name.first
-//                newUser.lastName = user.name.last
-//                newUser.email = user.email
-//                newUser.city = user.location.city
-//                newUser.state = user.location.state
-//                newUser.dateOfBirth = user.dob.date
-//                newUser.age = Int16(user.dob.age)
-//                newUser.imageLarge = user.picture.large
-//                newUser.imageMedium = user.picture.medium
-//                newUser.latitude = user.location.coordinates.latitude
-//                newUser.longitude = user.location.coordinates.longitude
-//
-//
-//            }
-                //saveUserToDB()
+            for user in fetchedUsers{
+                
+                let userExist = checkIfUserExist(user: user)
+                if !userExist {
+                    let newUser = User(context: context)
+                    newUser.firstName = user.name.first
+                    newUser.lastName = user.name.last
+                    newUser.email = user.email
+                    newUser.city = user.location.city
+                    newUser.state = user.location.state
+                    newUser.dateOfBirth = user.dob.date
+                    newUser.age = Int16(user.dob.age)
+                    newUser.imageLarge = user.picture.large
+                    newUser.imageMedium = user.picture.medium
+                    newUser.latitude = user.location.coordinates.latitude
+                    newUser.longitude = user.location.coordinates.longitude
+                    newUser.isChanged = false
+                }
+
+
+            }
+                saveUserToDB()
             
             
         } catch{
@@ -85,6 +105,26 @@ struct UserManager{
             print(error)
             
         }
+    }
+    
+    func checkIfUserExist(user : UserApi) -> Bool{
+        
+        let request : NSFetchRequest<User> = User.fetchRequest()
+        request.predicate = NSPredicate(format : "firstName LIKE %@", "\(user.name.first)")
+        
+        do{
+            let fetchedUser = try context.fetch(request)
+            
+            if user.name.first == fetchedUser.first?.firstName {
+                return true
+            }
+            
+            return false
+        }catch{
+            print("error fetching object from DB \(error)")
+        }
+        
+        return false
     }
     
     func saveUserToDB()  {

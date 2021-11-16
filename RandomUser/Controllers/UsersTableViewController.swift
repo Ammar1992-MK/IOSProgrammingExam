@@ -21,13 +21,18 @@ class UsersTableViewController: UITableViewController {
     
     var refreshControll = UIRefreshControl()
     
+    var seedManager = SeedManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        seedManager.isFirstLaunch()
+        seedManager.storeFirstLaunch()
         userManager.fetchUserData()
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-       loadUsers()
+        loadUsers()
         refreshControll.addTarget(self, action: #selector(self.updateTable(refrechController:)), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControll)
+        tableView.reloadData()
     }
     
     @objc func updateTable(refrechController : UIRefreshControl){
@@ -45,12 +50,14 @@ class UsersTableViewController: UITableViewController {
         do{
             users = try context.fetch(request)
             tableView.reloadData()
+            print(users.count)
         }catch{
             print("error fetching data from DB \(error)")
         }
         
         
     }
+    
 
     
 
@@ -93,8 +100,8 @@ class UsersTableViewController: UITableViewController {
     }
     
     
-    
 }
+
 
 
 

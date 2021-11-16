@@ -76,15 +76,15 @@ class UpdateUserViewController: UIViewController {
             fetchedUser.first?.lastName = lastNameTextField.text
             fetchedUser.first?.dateOfBirth = dateOfBirthTextField.text
             fetchedUser.first?.email = emailTextField.text
+            fetchedUser.first?.isChanged = true
             //Update age
             
             let birthday  = datePicker?.date
             let now = Date()
             let ageComponents = Calendar.current.dateComponents([.year,.month,.day], from: birthday!, to: now)
             fetchedUser.first?.age = Int16(ageComponents.year!)
-            
-            
             saveUserToDB()
+            
         }catch{
             print("error fetching data from DB \(error)")
         }

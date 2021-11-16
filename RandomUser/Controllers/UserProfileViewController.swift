@@ -24,7 +24,7 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
     
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var user : User! = nil
     
@@ -56,6 +56,13 @@ class UserProfileViewController: UIViewController {
     
     
     @IBAction func deleteUserPressed(_ sender: UIButton) {
+        
+        context.delete(user)
+        do{
+            try context.save()
+        }catch{
+            print("Error saving \(error)")
+        }
     }
     
     

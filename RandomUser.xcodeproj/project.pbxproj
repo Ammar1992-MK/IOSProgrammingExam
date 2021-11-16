@@ -12,6 +12,8 @@
 		2A0F28E02732DCF800B21CF2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F28DF2732DCF800B21CF2 /* MapViewController.swift */; };
 		2A2AAD41273BECB900CA7583 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A2AAD3F273BECB900CA7583 /* DataModel.xcdatamodeld */; };
 		2A53529D273D66B800BD28AD /* UpdateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53529C273D66B800BD28AD /* UpdateUserViewController.swift */; };
+		2A78C0EA2743EBAF005911BD /* UpdateSeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78C0E92743EBAF005911BD /* UpdateSeedViewController.swift */; };
+		2A78C0EC2743F2BE005911BD /* SeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78C0EB2743F2BE005911BD /* SeedManager.swift */; };
 		2AD0081C2730026100F9B828 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0081B2730026100F9B828 /* AppDelegate.swift */; };
 		2AD0081E2730026100F9B828 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0081D2730026100F9B828 /* SceneDelegate.swift */; };
 		2AD008202730026100F9B828 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0081F2730026100F9B828 /* UsersListViewController.swift */; };
@@ -31,6 +33,8 @@
 		2A2AAD40273BECB900CA7583 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		2A53529B273D410E00BD28AD /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		2A53529C273D66B800BD28AD /* UpdateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserViewController.swift; sourceTree = "<group>"; };
+		2A78C0E92743EBAF005911BD /* UpdateSeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSeedViewController.swift; sourceTree = "<group>"; };
+		2A78C0EB2743F2BE005911BD /* SeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedManager.swift; sourceTree = "<group>"; };
 		2AD008182730026100F9B828 /* RandomUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AD0081B2730026100F9B828 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AD0081D2730026100F9B828 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 				2A0F28DD2732085A00B21CF2 /* UsersTableViewController.swift */,
 				2A0F28DF2732DCF800B21CF2 /* MapViewController.swift */,
 				2A53529C273D66B800BD28AD /* UpdateUserViewController.swift */,
+				2A78C0E92743EBAF005911BD /* UpdateSeedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 				2AD00836273008AE00F9B828 /* UserManager.swift */,
 				2A2AAD3F273BECB900CA7583 /* DataModel.xcdatamodeld */,
 				2AD008382730099600F9B828 /* UserData.swift */,
+				2A78C0EB2743F2BE005911BD /* SeedManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,9 +200,11 @@
 				2AD008392730099600F9B828 /* UserData.swift in Sources */,
 				2A53529D273D66B800BD28AD /* UpdateUserViewController.swift in Sources */,
 				2A0F28DC2731E3A100B21CF2 /* UserProfileViewController.swift in Sources */,
+				2A78C0EA2743EBAF005911BD /* UpdateSeedViewController.swift in Sources */,
 				2A0F28DE2732085A00B21CF2 /* UsersTableViewController.swift in Sources */,
 				2A0F28E02732DCF800B21CF2 /* MapViewController.swift in Sources */,
 				2AD00833273003FC00F9B828 /* UserCell.swift in Sources */,
+				2A78C0EC2743F2BE005911BD /* SeedManager.swift in Sources */,
 				2AD008202730026100F9B828 /* UsersListViewController.swift in Sources */,
 				2AD0081C2730026100F9B828 /* AppDelegate.swift in Sources */,
 				2AD00837273008AE00F9B828 /* UserManager.swift in Sources */,
