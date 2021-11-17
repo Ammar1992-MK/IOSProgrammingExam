@@ -13,7 +13,7 @@ class UsersTableViewController: UITableViewController {
 
     
     var userManager = UserManager()
-    var users : [User] = []
+    //var users : [User] = []
     var fetchedResultsController : NSFetchedResultsController<User>!
     var userImage : UIImage?
     var imageToPass = UIImage()
@@ -30,37 +30,39 @@ class UsersTableViewController: UITableViewController {
         seedManager.storeFirstLaunch()
         userManager.fetchUserData()
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        refreshControll.addTarget(self, action: #selector(self.updateTable(refrechController:)), for: UIControl.Event.valueChanged)
-        tableView.addSubview(refreshControll)
-        loadUsers()
-    }
-    
-    func setupFetchedResultsController(){
+        setupFetchedResultsController()
         
+        refreshControll.addTarget(self, action: #selector(self.updateTable(refrechController:)), for: UIControl.Event.valueChanged)
+              tableView.addSubview(refreshControll)
     }
-    
     
     @objc func updateTable(refrechController : UIRefreshControl){
         DispatchQueue.main.async {
-            self.loadUsers()
+            self.userManager.fetchUserData()
             self.refreshControll.endRefreshing()
         }
     }
-  
     
-    func loadUsers(){
-        
-        let request : NSFetchRequest<User> = User.fetchRequest()
+    func setupFetchedResultsController(){
+        fetchedResultsController = loadUsers()
+        fetchedResultsController.delegate = self
         
         do{
-            users = try context.fetch(request)
-            tableView.reloadData()
-            print(users.count)
+            try fetchedResultsController.performFetch()
         }catch{
-            print("error fetching data from DB \(error)")
+            print("error")
         }
+    }
+    
+    
+    func loadUsers() -> NSFetchedResultsController <User>{
         
-        
+        let request : NSFetchRequest<User> = User.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(keyPath: \User.age, ascending: false)
+        request.sortDescriptors = [sortDescriptor]
+            
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+       
     }
     
 
@@ -68,22 +70,30 @@ class UsersTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return users.count
+        let users = fetchedResultsController.sections![section]
+        return users.numberOfObjects
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! UserCell
+        
+        let user = fetchedResultsController.object(at: indexPath)
 
-        cell.label.text = "\(users[indexPath.row].firstName ?? "No first Name were found") \(users[indexPath.row].lastName ?? "no last name were found")"
+        cell.label.text = "\(user.firstName ?? "No first Name were found") \(user.lastName ?? "no last name were found")"
         
         DispatchQueue.main.async { [self] in
-            let url = URL(string: self.users[indexPath.row].imageMedium!)
-               if let data = try? Data(contentsOf: url!)
-               {
-                userImage = UIImage(data: data)
-                cell.userImage.image = self.userImage
-               }
+            
+            if let image = user.imageMedium {
+                if let url = URL(string: image){
+                    if let data = try? Data(contentsOf: url){
+                        
+                        userImage = UIImage(data: data)
+                        cell.userImage.image = self.userImage
+                    }
+                    
+                }
+            }
+
         }
         return cell
     }
@@ -93,8 +103,9 @@ class UsersTableViewController: UITableViewController {
         if let vc = storyboard?.instantiateViewController(identifier: "UserProfile") as? UserProfileViewController{
             self.navigationController?.pushViewController(vc, animated: true)
             
+            let user = fetchedResultsController.object(at: indexPath)
          
-            vc.user = users[indexPath.row]
+            vc.user = user
         
 
         }
@@ -105,6 +116,33 @@ class UsersTableViewController: UITableViewController {
     
 }
 
+// MARK:- NSFetchedResultsController Delegates
+extension UsersTableViewController : NSFetchedResultsControllerDelegate{
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .automatic)
+//        case .move:
+//            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        default:
+            tableView.reloadData()
+        }
+    }
+}
 
 
 
