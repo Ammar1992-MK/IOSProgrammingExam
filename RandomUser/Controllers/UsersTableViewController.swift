@@ -14,6 +14,7 @@ class UsersTableViewController: UITableViewController {
     
     var userManager = UserManager()
     var users : [User] = []
+    var fetchedResultsController : NSFetchedResultsController<User>!
     var userImage : UIImage?
     var imageToPass = UIImage()
     
@@ -29,11 +30,15 @@ class UsersTableViewController: UITableViewController {
         seedManager.storeFirstLaunch()
         userManager.fetchUserData()
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        loadUsers()
         refreshControll.addTarget(self, action: #selector(self.updateTable(refrechController:)), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControll)
-        tableView.reloadData()
+        loadUsers()
     }
+    
+    func setupFetchedResultsController(){
+        
+    }
+    
     
     @objc func updateTable(refrechController : UIRefreshControl){
         DispatchQueue.main.async {
@@ -57,8 +62,6 @@ class UsersTableViewController: UITableViewController {
         
         
     }
-    
-
     
 
     // MARK: - Table view data source
