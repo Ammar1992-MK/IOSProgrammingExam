@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var users : [User] = []
-    var annotations : [MKAnnotation] = []
+    var annotations : [MKAnnotation] = []
     
     var showOneUser = false
     
