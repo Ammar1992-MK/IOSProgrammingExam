@@ -27,7 +27,7 @@ class BirthdayTest: XCTestCase {
     func test_userHasBirthday(){
         let today = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-yy"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let stringDate = dateFormatter.string(from: today)
         
         let result = sut?.checkBirthdayCelebration(date: stringDate)
