@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0AB5FC2747E3AD00A7DA0A /* BirthdayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB5FB2747E3AD00A7DA0A /* BirthdayTest.swift */; };
+		2A0AB604274A8BCC00A7DA0A /* UserProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AB603274A8BCC00A7DA0A /* UserProfileManager.swift */; };
 		2A0F28DC2731E3A100B21CF2 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F28DB2731E3A100B21CF2 /* UserProfileViewController.swift */; };
 		2A0F28DE2732085A00B21CF2 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F28DD2732085A00B21CF2 /* UsersTableViewController.swift */; };
 		2A0F28E02732DCF800B21CF2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F28DF2732DCF800B21CF2 /* MapViewController.swift */; };
@@ -25,7 +27,21 @@
 		2AD008392730099600F9B828 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD008382730099600F9B828 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2A0AB5FE2747E3AD00A7DA0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AD008102730026000F9B828 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AD008172730026100F9B828;
+			remoteInfo = RandomUser;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2A0AB5F92747E3AD00A7DA0A /* BirthdayTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BirthdayTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A0AB5FB2747E3AD00A7DA0A /* BirthdayTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayTest.swift; sourceTree = "<group>"; };
+		2A0AB5FD2747E3AD00A7DA0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A0AB603274A8BCC00A7DA0A /* UserProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileManager.swift; sourceTree = "<group>"; };
 		2A0F28DB2731E3A100B21CF2 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		2A0F28DD2732085A00B21CF2 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		2A0F28DF2732DCF800B21CF2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +64,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A0AB5F62747E3AD00A7DA0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AD008152730026100F9B828 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,10 +81,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A0AB5FA2747E3AD00A7DA0A /* BirthdayTest */ = {
+			isa = PBXGroup;
+			children = (
+				2A0AB5FB2747E3AD00A7DA0A /* BirthdayTest.swift */,
+				2A0AB5FD2747E3AD00A7DA0A /* Info.plist */,
+			);
+			path = BirthdayTest;
+			sourceTree = "<group>";
+		};
 		2AD0080F2730026000F9B828 = {
 			isa = PBXGroup;
 			children = (
 				2AD0081A2730026100F9B828 /* RandomUser */,
+				2A0AB5FA2747E3AD00A7DA0A /* BirthdayTest */,
 				2AD008192730026100F9B828 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD008182730026100F9B828 /* RandomUser.app */,
+				2A0AB5F92747E3AD00A7DA0A /* BirthdayTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +152,7 @@
 				2A2AAD3F273BECB900CA7583 /* DataModel.xcdatamodeld */,
 				2AD008382730099600F9B828 /* UserData.swift */,
 				2A78C0EB2743F2BE005911BD /* SeedManager.swift */,
+				2A0AB603274A8BCC00A7DA0A /* UserProfileManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +160,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A0AB5F82747E3AD00A7DA0A /* BirthdayTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A0AB6022747E3AD00A7DA0A /* Build configuration list for PBXNativeTarget "BirthdayTest" */;
+			buildPhases = (
+				2A0AB5F52747E3AD00A7DA0A /* Sources */,
+				2A0AB5F62747E3AD00A7DA0A /* Frameworks */,
+				2A0AB5F72747E3AD00A7DA0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A0AB5FF2747E3AD00A7DA0A /* PBXTargetDependency */,
+			);
+			name = BirthdayTest;
+			productName = BirthdayTest;
+			productReference = 2A0AB5F92747E3AD00A7DA0A /* BirthdayTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2AD008172730026100F9B828 /* RandomUser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AD0082C2730026900F9B828 /* Build configuration list for PBXNativeTarget "RandomUser" */;
@@ -151,6 +204,10 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					2A0AB5F82747E3AD00A7DA0A = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 2AD008172730026100F9B828;
+					};
 					2AD008172730026100F9B828 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -170,11 +227,19 @@
 			projectRoot = "";
 			targets = (
 				2AD008172730026100F9B828 /* RandomUser */,
+				2A0AB5F82747E3AD00A7DA0A /* BirthdayTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2A0AB5F72747E3AD00A7DA0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AD008162730026100F9B828 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,6 +254,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A0AB5F52747E3AD00A7DA0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A0AB5FC2747E3AD00A7DA0A /* BirthdayTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AD008142730026100F9B828 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +271,7 @@
 				2A53529D273D66B800BD28AD /* UpdateUserViewController.swift in Sources */,
 				2A0F28DC2731E3A100B21CF2 /* UserProfileViewController.swift in Sources */,
 				2A78C0EA2743EBAF005911BD /* UpdateSeedViewController.swift in Sources */,
+				2A0AB604274A8BCC00A7DA0A /* UserProfileManager.swift in Sources */,
 				2A0F28DE2732085A00B21CF2 /* UsersTableViewController.swift in Sources */,
 				2A0F28E02732DCF800B21CF2 /* MapViewController.swift in Sources */,
 				2AD00833273003FC00F9B828 /* UserCell.swift in Sources */,
@@ -209,6 +283,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2A0AB5FF2747E3AD00A7DA0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2AD008172730026100F9B828 /* RandomUser */;
+			targetProxy = 2A0AB5FE2747E3AD00A7DA0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2AD008212730026100F9B828 /* Main.storyboard */ = {
@@ -230,6 +312,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A0AB6002747E3AD00A7DA0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73NCHQP3L2;
+				INFOPLIST_FILE = BirthdayTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = no.kristiania.BirthdayTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RandomUser.app/RandomUser";
+			};
+			name = Debug;
+		};
+		2A0AB6012747E3AD00A7DA0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73NCHQP3L2;
+				INFOPLIST_FILE = BirthdayTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = no.kristiania.BirthdayTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RandomUser.app/RandomUser";
+			};
+			name = Release;
+		};
 		2AD0082A2730026900F9B828 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -389,6 +511,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A0AB6022747E3AD00A7DA0A /* Build configuration list for PBXNativeTarget "BirthdayTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A0AB6002747E3AD00A7DA0A /* Debug */,
+				2A0AB6012747E3AD00A7DA0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2AD008132730026000F9B828 /* Build configuration list for PBXProject "RandomUser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

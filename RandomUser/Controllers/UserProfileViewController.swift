@@ -28,6 +28,10 @@ class UserProfileViewController: UIViewController {
     
     var user : User! = nil
     
+    var userProfileManager = UserProfileManager()
+    
+    var date = ""
+    
     var emojiLabel1 = UILabel.init(frame: .init(x: 100,y: 100,width: 200,height: 200))
     var emojiLabel2 = UILabel.init(frame: .init(x: 100,y: 100,width: 200,height: 200))
     var emojiLabel3 = UILabel.init(frame: .init(x: 100,y: 100,width: 200,height: 200))
@@ -78,56 +82,18 @@ class UserProfileViewController: UIViewController {
         emojiLabel6.frame.origin = CGPoint(x: 270, y: 300)
         emojiLabel7.frame.origin = CGPoint(x: 300, y: 400)
         
-       
-
-        
-        checkBirthdayCelebration()
-    }
-    
-    func getFormatedDate(date_string:String,dateFormat:String)-> String{
-
-       let dateFormatter = DateFormatter()
-       dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-       dateFormatter.dateFormat = dateFormat
-
-       let dateFromInputString = dateFormatter.date(from: date_string)
-       dateFormatter.dateFormat = "yyyy-MM-dd" // Here you can use any dateformate for output date
-       if(dateFromInputString != nil){
-           return dateFormatter.string(from: dateFromInputString!)
-       }
-       else{
-           debugPrint("could not convert date")
-           return "N/A"
-       }
-   }
-   
-    
-    func checkBirthdayCelebration(){
-        
-        var date = ""
-        
         if user.isChanged {
             date = user.dateOfBirth!
         } else {
-             date = getFormatedDate(date_string: dateOfBirthLabel.text!, dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            date = userProfileManager.getFormatedDate(date_string: dateOfBirthLabel.text!, dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let userBirthday = dateFormatter.date(from: date)
-        
-        let currentWeek = NSCalendar.current.component(.weekOfYear, from: Date())
-     
-        if let birthdayWeek = userBirthday{
+        if userProfileManager.checkBirthdayCelebration(date: date){
             
-            let week = NSCalendar.current.component(.weekOfYear, from: birthdayWeek)
-            
-            if currentWeek == week{
-                showBirthdayCelebration()
-            }
+            showBirthdayCelebration()
         }
     }
+        
     
     func showBirthdayCelebration(){
         view.addSubview(emojiLabel1)
