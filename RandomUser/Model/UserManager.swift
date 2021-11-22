@@ -39,7 +39,7 @@ struct UserManager{
             
             
         }catch{
-            print(error)
+            delegate?.didFailWithError(error: error)
         }
 
     }

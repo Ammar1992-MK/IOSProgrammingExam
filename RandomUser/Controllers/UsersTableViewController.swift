@@ -13,7 +13,6 @@ class UsersTableViewController: UITableViewController {
 
     
     var userManager = UserManager()
-    //var users : [User] = []
     var fetchedResultsController : NSFetchedResultsController<User>!
     var userImage : UIImage?
     var imageToPass = UIImage()
